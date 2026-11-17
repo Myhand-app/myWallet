@@ -17,6 +17,10 @@ jobs:
           else
             echo "DIR=." >> "$GITHUB_ENV"
           fi
+      - name: Download Plus Jakarta Sans font (optional)
+        run: |
+          mkdir -p "${{ env.DIR }}/app/src/main/assets/fonts"
+          curl -fsSL -o "${{ env.DIR }}/app/src/main/assets/fonts/PlusJakartaSans.ttf" "https://github.com/google/fonts/raw/main/ofl/plusjakartasans/PlusJakartaSans%5Bwght%5D.ttf" || echo "Font download failed, using the system font"
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
